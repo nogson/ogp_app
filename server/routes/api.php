@@ -18,5 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/messages', 'MessageController@store');
-Route::get('/messages/{id}','MessageController@show');
+Route::post('/message', 'MessageController@store');
+Route::get('/message/{id}','MessageController@show');

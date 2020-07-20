@@ -14,6 +14,7 @@
         </div>
       </div>
     </nav>
+    <nuxt />
   </div>
 </template>
 

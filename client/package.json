@@ -12,8 +12,14 @@
     "lint": "yarn lint:js"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.12.0",
     "@nuxtjs/bulma": "^1.2.7",
-    "nuxt": "^2.13.0"
+    "html2canvas": "^1.0.0-rc.5",
+    "install": "^0.13.0",
+    "node-sass": "^4.14.1",
+    "npm": "^6.14.6",
+    "nuxt": "^2.13.0",
+    "sass-loader": "^9.0.2"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.0.0",

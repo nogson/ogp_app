@@ -2,6 +2,8 @@ export const state = () => ({
   message: '',
   isLoading: false,
   ogpData: {},
+  messages: [],
+  comments: [],
 })
 
 export const mutations = {
@@ -13,6 +15,15 @@ export const mutations = {
   },
   setOGP(state, payload) {
     state.ogpData = payload
+  },
+  setMessages(state, payload) {
+    state.messages = payload
+  },
+  setComments(state, payload) {
+    state.comments = payload
+  },
+  resetComment(state) {
+    state.comments = []
   },
 }
 
@@ -30,6 +41,23 @@ export const actions = {
     const data = await this.$axios.$get(`/api/message/${payload}`)
     commit('setOGP', data)
   },
+  async getMessages({ commit }, payload) {
+    const data = await this.$axios.$get('/api/messages')
+    commit('setMessages', data)
+  },
+  async setComment({ getters, commit }, payload) {
+    await this.$axios.$post(`/api/comment/${payload.id}`, {
+      comment: payload.comment,
+    })
+  },
+  async getComments({ commit }, payload) {
+    const data = await this.$axios.$get('/api/comments', {
+      params: {
+        id: payload.id,
+      },
+    })
+    commit('setComments', data)
+  },
 }
 
 export const getters = {
@@ -41,5 +69,11 @@ export const getters = {
   },
   ogpData(state) {
     return state.ogpData
+  },
+  messages(state) {
+    return state.messages
+  },
+  comments(state) {
+    return state.comments
   },
 }

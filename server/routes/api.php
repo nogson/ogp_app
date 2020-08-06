@@ -20,3 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/message', 'MessageController@store');
 Route::get('/message/{id}','MessageController@show');
+Route::get('/messages','MessageController@index');
+
+Route::get('/comments', 'CommentController@index');
+Route::post('/comment/{id}', 'CommentController@store');

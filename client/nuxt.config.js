@@ -29,7 +29,10 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: [
+    { src: '~assets/scss/main.scss', lang: 'scss' },
+    '@fortawesome/fontawesome-free/css/all.css',
+  ],
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
@@ -46,17 +49,26 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
+    '@nuxtjs/moment',
   ],
   /*
    ** Nuxt.js modules
    */
   modules: [
     // Doc: https://github.com/nuxt-community/modules/tree/master/packages/bulma
-    '@nuxtjs/bulma',
+    // '@nuxtjs/bulma',
     '@nuxtjs/axios',
+    '@nuxtjs/style-resources',
   ],
   axios: {
     baseURL: 'http://localhost',
+  },
+  moment: {
+    // ここにオプションが記述できる
+    locales: ['ja'],
+  },
+  styleResources: {
+    scss: ['~/assets/scss/_index.scss'],
   },
   proxy: {
     '/api': '/',

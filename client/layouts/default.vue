@@ -5,11 +5,25 @@
         <div class="navbar-brand">
           <nuxt-link class="navbar-item" to="/">
             <img
-              src="https://bulma.io/images/bulma-logo.png"
-              alt="aa"
+              src="~@/assets/images/logo.png"
+              alt="logo"
               width="112"
               height="28"
             />
+          </nuxt-link>
+          <p class="is-size-7 disc">
+            今日のことばを共有するプラットホーム
+          </p>
+        </div>
+        <div class="navbar-end">
+          <nuxt-link
+            class="navbar-item is-size-7 has-text-weight-semibold"
+            to="/message"
+          >
+            <span class="icon has-text-primary">
+              <i class="fa fa-comment"></i>
+            </span>
+            ことば一覧
           </nuxt-link>
         </div>
       </div>
@@ -18,7 +32,7 @@
   </div>
 </template>
 
-<style>
+<style lang="scss">
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -38,32 +52,25 @@ html {
   margin: 0;
 }
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
+.navbar-brand {
+  align-items: center;
 }
 
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
+.disc {
+  margin-left: 10px;
+  margin-top: 10px;
+  display: none;
+  @media screen and (min-width: $tablet) {
+    display: block;
+  }
 }
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+#navbar .container {
+  @media screen and (max-width: $mobile) {
+    display: flex;
+    align-items: center;
+    .navbar-end {
+      margin-left: auto;
+    }
+  }
 }
 </style>

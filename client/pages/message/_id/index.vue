@@ -1,28 +1,44 @@
 <template>
   <section class="section no-top-pad">
-    詳細ページ
     <div class="columns is-centered is-mobile">
       <div class="column is-half-desktop is-full-mobile is-full-tablet">
         <h2 class="subtitle">
-          {{ ogpData.message }}
           <img :src="ogpData.url" alt="" />
         </h2>
       </div>
+    </div>
+    <a
+      href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+      class="twitter-share-button"
+      data-show-count="false"
+      >Tweet</a
+    >
+    <div class="comments-container">
+      <h2 class="title is-5">コメント</h2>
+      <comments :comments="comments" />
     </div>
   </section>
 </template>
 
 <script>
+import Comments from '../../../components/Comments'
 export default {
+  components: { Comments },
   async fetch({ app, store, route }) {
     const id = route.params.id
     await store.dispatch('getOPG', id)
+    await store.dispatch('getComments', { id })
   },
   computed: {
     ogpData() {
-      console.log(this.$store.getters.ogpData)
       return this.$store.getters.ogpData
     },
+    comments() {
+      return this.$store.getters.comments
+    },
+  },
+  destroyed() {
+    this.$store.commit('resetComment')
   },
   head() {
     return {
@@ -42,11 +58,6 @@ export default {
           hid: 'og:type',
           property: 'og:type',
           content: 'article',
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content: window.location.href,
         },
         {
           hid: 'og:image',
@@ -69,6 +80,7 @@ export default {
           content: this.ogpData.url,
         },
       ],
+      script: [{ src: 'https://platform.twitter.com/widgets.js' }],
     }
   },
 }

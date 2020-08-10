@@ -17,10 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::middleware(['cors'])->group(function () {
 
-Route::post('/message', 'MessageController@store');
-Route::get('/message/{id}','MessageController@show');
-Route::get('/messages','MessageController@index');
+    Route::post('/message', 'MessageController@store');
+    Route::get('/message/{id}', 'MessageController@show');
+    Route::get('/messages', 'MessageController@index');
 
-Route::get('/comments', 'CommentController@index');
-Route::post('/comment/{id}', 'CommentController@store');
+    Route::get('/comments', 'CommentController@index');
+    Route::post('/comment/{id}', 'CommentController@store');
+});
